@@ -174,9 +174,9 @@ section {
 }
 
 .logo-1 {
-    width: auto;
+    width: 8rem;
     /* Laisse l'espace nécessaire en fonction de la hauteur de l'image */
-    height: 150px;
+    height: 8rem;
     /* Laisse la hauteur de l'image telle qu'elle est, ou ajustez-la */
     display: inline-block;
     perspective: 1000px;
@@ -199,9 +199,9 @@ section {
 
 /* Style pour l'image dans le logo */
 .logo-1 img {
-    width: auto;
+    width: 8rem;
     /* La largeur est calculée automatiquement pour respecter la proportion */
-    height: 150px;
+    height: 8rem;
     /* Vous pouvez ajuster la hauteur ici */
     object-fit: cover;
     /* Cette propriété permet de couvrir l'espace sans déformer l'image */
