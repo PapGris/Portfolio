@@ -13,12 +13,28 @@ html {
     font-size: 62.5%;
 }
 
+
 body {
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     font-size: 1.6rem;
     color: var(--color-body);
-    background: #fafbe7;
     margin: 0;
+    background: linear-gradient(-100deg, #f4e196, #fafbe7, #f8edc3);
+    background-size: 400% 400%;
+    animation: gradient 15s ease infinite;
+}
+
+@keyframes gradient {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -487,9 +503,14 @@ section {
     
 }
 
+.about {
+    padding: 10rem 0;
+    
+}
+
 .about .section-title{
     margin-top: 2.8rem;
-
+    
 }
 
 .about img {
