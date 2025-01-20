@@ -101,6 +101,11 @@ li {
     list-style: none;
     margin: 0;
     padding: 0;
+} 
+
+.menu-list-unstyled {
+    margin-left: 0px !important;
+    padding: 0px !important;
 }
 
 .category {
@@ -110,7 +115,7 @@ li {
 }
 
 .container {
-    padding: 1rem 2rem;
+    padding: 1rem 3rem;
     
 }
 
@@ -179,7 +184,11 @@ section {
         font-size: 4.8rem;
     }
 }
-
+@media screen and (max-width:749px) {
+    .logo-1 {
+    margin-left: 8px;
+}
+}
 .header {
     background-color: #fafbe7;
     border-bottom: 1px solid #7c8085;
@@ -280,9 +289,8 @@ section {
 
 .header li {
     display: inline-flex;
-    align-items: center;
-    padding: 0 0.5rem;
-}
+    align-items: center; 
+} 
 
 @media screen and (min-width:750px) {
     .header .menu-list-unstyled a {
@@ -302,6 +310,12 @@ section {
 .header .right {
     display: flex;
     align-items: center;
+}
+
+.right ul li {
+    display: flex;
+    width: 40px;
+    justify-content: space-around;
 }
 
 .socials {
@@ -391,9 +405,17 @@ section {
         background: #fdeca6;
         transition: all .4s ease-out;
         }
-        nav .menu li {
+        .header li {
             display: flex;
             justify-content: center;
+            flex-direction: row; 
+            margin: auto auto;
+            margin-left: 0px;
+            align-content: center; 
+        }
+        .menu-list-unstyled {
+            margin-left: 0px !important;
+            padding: 0px !important; 
         }
         nav a {
             display: block;
@@ -405,6 +427,7 @@ section {
             width: 100%;
             left: 0;
             z-index: 2;
+            margin-top: 16px;
         }
         .show-nav nav li a:hover {
             transform: scale(1.1);
