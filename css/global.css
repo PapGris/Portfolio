@@ -200,14 +200,14 @@ section {
 
 .logo-1 {
     width: 8rem;
-    /* Laisse l'espace nécessaire en fonction de la hauteur de l'image */
+    
     height: 8rem;
-    /* Laisse la hauteur de l'image telle qu'elle est, ou ajustez-la */
+    
     display: inline-block;
     perspective: 1000px;
 }
 
-/* Animation clé */
+
 @keyframes flip {
     0% {
         transform: rotateY(0deg);
@@ -222,20 +222,20 @@ section {
     }
 }
 
-/* Style pour l'image dans le logo */
+
 .logo-1 img {
     width: 8rem;
-    /* La largeur est calculée automatiquement pour respecter la proportion */
+    
     height: 8rem;
-    /* Vous pouvez ajuster la hauteur ici */
+    
     object-fit: cover;
-    /* Cette propriété permet de couvrir l'espace sans déformer l'image */
+    
     border-radius: 50%;
-    /* Cela rendra l'image ronde */
+    
     animation: flip 5s infinite linear;
-    /* Animation continue de 3 secondes */
+    
     transform-style: preserve-3d;
-    /* Nécessaire pour les effets 3D */
+    /
 
 
 }
@@ -243,14 +243,14 @@ section {
 @media screen and (max-width:749px) {
     .logo-1 {
         width: 5rem;
-        /* Laisse l'espace nécessaire en fonction de la hauteur de l'image */
+        
         height: 5rem;
-        /* Laisse la hauteur de l'image telle qu'elle est, ou ajustez-la */
+        
         display: inline-block;
         perspective: 1000px;
     }
     
-    /* Animation clé */
+    
     @keyframes flip {
         0% {
             transform: rotateY(0deg);
@@ -265,20 +265,20 @@ section {
         }
     }
     
-    /* Style pour l'image dans le logo */
+    
     .logo-1 img {
         width: 5rem;
-        /* La largeur est calculée automatiquement pour respecter la proportion */
+        
         height: 5rem;
-        /* Vous pouvez ajuster la hauteur ici */
+        
         object-fit: cover;
-        /* Cette propriété permet de couvrir l'espace sans déformer l'image */
+        
         border-radius: 50%;
-        /* Cela rendra l'image ronde */
+        
         animation: flip 5s infinite linear;
-        /* Animation continue de 3 secondes */
+        
         transform-style: preserve-3d;
-        /* Nécessaire pour les effets 3D */
+        
     
     
     }
@@ -290,6 +290,7 @@ section {
 .header li {
     display: inline-flex;
     align-items: center; 
+    margin-left: 15px;
 } 
 
 @media screen and (min-width:750px) {

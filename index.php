@@ -1,3 +1,92 @@
+<?php
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+
+require 'PHPMailer/src/Exception.php';
+require 'PHPMailer/src/PHPMailer.php';
+require 'PHPMailer/src/SMTP.php';
+
+$firstname = $lastname = $message =  $email = "";
+
+// Initialisation des messages d'erreur
+$errors = [];
+$success = false;
+
+// Vérification si le formulaire est soumis
+if (isset($_POST['validation'])) {
+    // Récupération et validation des champs
+    if (isset($_POST['firstname']) && !empty($_POST['firstname'])) {
+        $firstname = htmlspecialchars($_POST['firstname'], ENT_QUOTES, 'UTF-8');
+        if (strlen($firstname) > 50) {
+            $errors[] = "Le prénom ne doit pas dépasser 50 caractères.";
+        }
+    } else {
+        $errors[] = "Le champ 'Prénom' est obligatoire.";
+    }
+
+    if (isset($_POST['lastname']) && !empty($_POST['lastname'])) {
+        $lastname = htmlspecialchars($_POST['lastname'], ENT_QUOTES, 'UTF-8');
+        if (strlen($lastname) > 50) {
+            $errors[] = "Le nom ne doit pas dépasser 50 caractères.";
+        }
+    } else {
+        $errors[] = "Le champ 'Nom' est obligatoire.";
+    }
+
+    if (isset($_POST['message']) && !empty($_POST['message'])) {
+        $message = htmlspecialchars($_POST['message'], ENT_QUOTES, 'UTF-8');
+        if (strlen($message) > 500) {
+            $errors[] = "Le message ne doit pas dépasser 500 caractères.";
+        }
+    } else {
+        $errors[] = "Le champ 'Message' est obligatoire.";
+    }
+
+    if (isset($_POST['email']) && !empty($_POST['email'])) {
+        $email = htmlspecialchars($_POST['email'], ENT_QUOTES, 'UTF-8');
+        if (strlen($email) > 500) {
+            $errors[] = "L'email ne doit pas dépasser 500 caractères.";
+        }
+    } else {
+        $errors[] = "Le champ 'email' est obligatoire.";
+    }
+
+    // Vérification finale
+    if (empty($errors)) {
+        $mail = new PHPMailer(true);
+        try {
+            $mail->isSMTP();
+            $mail->Host = 'smtp.gmail.com';
+            $mail->SMTPAuth = true;
+            $mail->Username = 'alexandre.blaizot@stagiairesmns.fr';
+            $mail->Password = 'bzypbcvttiwpztzr'; // Remplacer par une méthode plus sécurisée
+            $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+            $mail->Port = 587;
+        
+            // Destinataire
+            $mail->setFrom('teste@gmail.com', $email);
+            $mail->addAddress('alexandre.blaizot@stagiairesmns.fr'); // ADRESSE SUR LAQUELLE TU VEUX ENVOYER LE MAIL
+        
+            // Contenu de l'e-mail
+            $mail->isHTML(true);
+            $mail->Subject = $message; 
+        $mail->Body = 'Bonjour Alex, '.$firstname.' '.$lastname.' a essayé de te contacter et voici son message: <br><br> '.$message.''; 
+        
+            $mail->AltBody = 'TESTE';
+        
+            // Envoi de l'e-mail
+            $mail->send();
+            $success = "Votre mail a bien été envoyé !";
+        } catch (Exception $e) {
+            echo json_encode([
+                "status" => "error",
+                "message" => "Erreur d'envoi de l'e-mail : " . $mail->ErrorInfo
+            ]);
+        }
+
+    }
+}
+?>
 <!DOCTYPE html>
 <html lang="fr">
     <head>
@@ -625,7 +714,20 @@ Footer
         <div class="section-header">
             <h2 class="section-title">Contact</h2>
         </div>
-        <form action="contact.php" class="form">
+      
+        <form class="form" method="POST">
+        <?php
+         // Affichage du résultat
+    if (!empty($errors)) {
+        foreach ($errors as $error) {
+            echo "<p style='color:red;'>$error</p>";
+        }
+    } 
+
+    if (isset($success)) { 
+        echo "<p style='color:green;'>$success</p>"; 
+    } 
+        ?>
             <label for="firstname">
                 <input type="text" name="firstname" id="firstname" placeholder="Nom">
             </label>
@@ -636,7 +738,7 @@ Footer
                 <input type="email" name="email" id="email" placeholder="Email">
             </label>
             <textarea name="message" id="message" placeholder="Message"></textarea>
-            <input type="submit" class="btn" value="Envoyer">
+            <input type="submit" name="validation" class="btn" value="Envoyer">
         </form>
     </div>           
  </section>
