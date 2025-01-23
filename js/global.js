@@ -221,46 +221,99 @@ showProjectsDetails();
 
 // effets
 
+// Détection du scroll pour animer les textes
+
+// Fonction pour les animations de texte typewriter
+function typeWriter(id, text, speed) {
+    const element = document.getElementById(id);
+    let i = 0;
+    if (element) {
+        const interval = setInterval(() => {
+            if (i < text.length) {
+                element.textContent += text.charAt(i);
+                i++;
+            } else {
+                clearInterval(interval);
+            }
+        }, speed);
+    }
+}
+
+// Gestion des animations au scroll
+const scrollAnimations = [
+    { id: "section1", text: "Texte pour Section 1", visible: false },
+    { id: "section2", text: "Texte pour Section 2", visible: false },
+    // Ajoutez d'autres animations si nécessaire
+];
+
+window.addEventListener("scroll", () => {
+    scrollAnimations.forEach((animation) => {
+        const element = document.getElementById(animation.id);
+
+        if (element) {
+            const rect = element.getBoundingClientRect();
+            const isVisible = rect.top < window.innerHeight && rect.bottom > 0;
+
+            if (isVisible && !animation.visible) {
+                // Si l'élément devient visible
+                typeWriter(animation.id, animation.text, 100);
+                animation.visible = true;
+            } else if (!isVisible && animation.visible) {
+                // Si l'élément n'est plus visible
+                element.textContent = "";
+                animation.visible = false;
+            }
+        }
+    });
+});
+
+// Gestion des sections avec opacité et compétences avec largeur
 const observerIntersectionAnimation = () => {
     const sections = document.querySelectorAll("section");
     const compétences = document.querySelectorAll(".compétences .bar");
 
-
-    sections.forEach((section, index) => {
+    // Initialisation des styles
+    sections.forEach((section) => {
         section.style.opacity = "0";
         section.style.transition = "all 2s";
     });
 
-    compétences.forEach((elem, index) => {
-        elem.style.width = "0";
-        elem.style.transition = "all 2s";
+    compétences.forEach((bar) => {
+        bar.style.width = "0";
+        bar.style.transition = "all 2s";
     });
 
-    let sectionObserveur = new IntersectionObserver(function (entries, observer) {
-        entries.forEach(entry => {
-            if(entry.isIntersecting) {
-                let elem = entry.target;
-                elem.style.opacity = 1
+    // Observateur pour les sections
+    const sectionObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+                entry.target.style.opacity = "1";
+            } else {
+                entry.target.style.opacity = "0";
             }
-        })
+        });
     });
 
-    sections.forEach(section => {
-        sectionObserveur.observe(section)
+    sections.forEach((section) => {
+        sectionObserver.observe(section);
     });
 
-    let compétencesObserveur = new IntersectionObserver(function (entries, observer) {
-        entries.forEach(entry => {
-            if(entry.isIntersecting) {
-                let elem = entry.target;
+    // Observateur pour les barres de compétences
+    const compétencesObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+                const elem = entry.target;
                 elem.style.width = elem.dataset.width + "%";
+            } else {
+                entry.target.style.width = "0";
             }
-        })
+        });
     });
 
-    compétences.forEach(compétences => {
-        compétencesObserveur.observe(compétences)
+    compétences.forEach((bar) => {
+        compétencesObserver.observe(bar);
     });
-}
+};
 
-observerIntersectionAnimation ();
+// Appelez la fonction d'observation au chargement de la page
+observerIntersectionAnimation();
