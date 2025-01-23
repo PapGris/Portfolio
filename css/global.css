@@ -420,11 +420,12 @@ section {
         }
         nav a {
             display: block;
-            font-size: 2rem;
+            font-size: 3rem;
             padding: 2rem;
+            opacity: 100%;
         }
         .show-nav nav {
-            opacity: 1;
+            opacity: 90%;
             width: 100%;
             left: 0;
             z-index: 2;
@@ -950,11 +951,6 @@ footer .socials a:hover {
 .toto {
     color: darkslategray;
 
-}
-
-@media screen and (min-width:750px) {
-   
-    
 }
 
 @keyframes slideInleft {
