@@ -6,7 +6,7 @@
 }
 
 * {
-  box-sizing: border-box;  
+    box-sizing: border-box;  
 }
 
 html {
@@ -39,14 +39,13 @@ body {
 
 h1, h2, h3, h4, h5, h6 {
     font-family: "Poppins", sans-serif;
-    color: darkslategray;
+    color: #2f4f4f;
     line-height: 1;
 }
 
 h1,
 .h1{
     font-size: 3.1rem;
-
 }
 
 h2, 
@@ -58,27 +57,21 @@ h2,
 
 h3,
 .h3{
-    font-size: 2.3rem;
-    
+    font-size: 2.3rem;   
 }
-
-
 
 h5,
 .h5{
-    font-size: 3.1rem;
-    
+    font-size: 3.1rem;   
 }
 
 h6,
 .h6{
-    font-size: 3.1rem;
-    
+    font-size: 3.1rem;   
 }
 
 p {
     font-family: "Poppins", sans-serif;
-
 }
 
 a {
@@ -88,9 +81,8 @@ a {
 }
 
 img {
-    max-width: 100%;
-    height: auto;
-    
+    max-width: 100%; 
+    height: auto;     
 }
 
 li {
@@ -228,7 +220,6 @@ section {
     border-radius: 50%;    
     animation: flip 5s infinite linear;    
     transform-style: preserve-3d;
-       
 }
 
 @media screen and (max-width:749px) {
@@ -498,19 +489,19 @@ section {
 }
 
 @media screen and (min-width:750px) {
-   .hero__item {
+.hero__item {
     flex:1 0 50%;
     align-items: flex-start;
     text-align: left;
     }
-   .hero .title {
+.hero .title {
     font-size: 5rem;
     margin: 1rem 0 0 0;
     }
     .hero__item.left{
     align-items: flex-start;
     }
-   .hero__avatar img {
+.hero__avatar img {
     max-width: 400px;
     border-radius: 50%;
     margin-left: 10rem;
@@ -534,8 +525,8 @@ section {
 
 
 .about img {
-     margin-top: 8rem;
-     box-shadow: 5px 3px 6px #2f4f4f;
+    margin-top: 8rem;
+    box-shadow: 5px 3px 6px #2f4f4f;
 }
 
 .services {
@@ -569,10 +560,10 @@ section {
 }
 
 @media screen and (max-width:749px) {
-   .service {
+.service {
     text-align: center;
    }
-   .service__icon {
+.service__icon {
     margin: 0 auto;
    }
    .service__icon {
@@ -747,8 +738,7 @@ section {
 
     .portfolio-filters .grid__item {
         max-width: 25%;
-    }
-     
+    }    
 }
 
 @media screen and (max-width:749px) {
@@ -969,5 +959,5 @@ footer .socials a:hover {
     }
 }
 
-/* components */
+
 
